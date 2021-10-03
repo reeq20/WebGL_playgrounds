@@ -11,7 +11,7 @@ module.exports = ({mode}) => {
 
         // ファイルの出力設定
         output: {
-            path: path.resolve(__dirname, '../dist'),
+            path: path.resolve(__dirname, './dist'),
             assetModuleFilename: 'assets/[name][ext]',
             filename: '[name].js',
             clean: false,
