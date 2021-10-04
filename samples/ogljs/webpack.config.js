@@ -12,7 +12,7 @@ module.exports = ({mode}) => {
         // ファイルの出力設定
         output: {
             path: path.resolve(__dirname, './dist'),
-            assetModuleFilename: 'src/[name][ext]',
+            assetModuleFilename: 'assets/[path][name][ext]',
             filename: '[name].js',
             clean: false,
         },
@@ -51,7 +51,9 @@ module.exports = ({mode}) => {
         },
         resolve: {
             alias: {
+                '~js': path.resolve(__dirname, 'src/js/'),
                 '~glsl': path.resolve(__dirname, 'src/glsl/'),
+                '~images': path.resolve(__dirname, 'src/images/'),
             },
             // importする際の拡張子を省略できる。
             extensions: ['.js', '.glsl'],
