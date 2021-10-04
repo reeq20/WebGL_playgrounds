@@ -12,7 +12,7 @@ module.exports = ({mode}) => {
         // ファイルの出力設定
         output: {
             path: path.resolve(__dirname, './dist'),
-            assetModuleFilename: 'assets/[name][ext]',
+            assetModuleFilename: 'src/[name][ext]',
             filename: '[name].js',
             clean: false,
         },
@@ -31,7 +31,7 @@ module.exports = ({mode}) => {
                     test: /\.(png|jpe?g|gif|svg|woff2?|ttf|ept)$/,
                     type: 'asset',
                     generator: {
-                        filename: 'assets/[path][name][ext]'
+                        filename: '[path][name][ext]'
                     },
                     parser: {
                         dataUrlCondition: {
@@ -42,19 +42,19 @@ module.exports = ({mode}) => {
                 // シェーダー読み込み
                 {
                     test: /\.(vs|fs|glsl|vert|frag)$/,
-                    type: 'asset/resource'
+                    type: 'asset/source',
+                    generator: {
+                        filename: '[path][name][ext]'
+                    },
                 },
             ]
         },
         resolve: {
             alias: {
-                '@scss': path.join(__dirname, 'src/glsl'),
-                '@images': path.join(__dirname, 'src/images')
+                '~glsl': path.resolve(__dirname, 'src/glsl/'),
             },
             // importする際の拡張子を省略できる。
-            // import '@scss/app.scss' → '@scss/app'
             extensions: ['.js', '.glsl'],
-            modules: [path.join(__dirname, 'src'), 'node_modules']
         },
         plugins: [
             new HtmlWebpackPlugin({
